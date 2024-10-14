@@ -1,7 +1,7 @@
 import sys
 
 def main():
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 5:
         print("Usage: python script_name.py <input_param>")
         sys.exit(1)
     
