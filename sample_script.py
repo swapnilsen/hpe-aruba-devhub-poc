@@ -6,14 +6,16 @@ def main():
         sys.exit(1)
     
     script_name = sys.argv[0]
-    central_api_token = sys.argv[1]
-    serial_num = sys.argv[2]
-    device_type = sys.argv[3]
+    base_url = sys.argv[1]
+    central_api_token = sys.argv[2]
+    serial_num = sys.argv[3]
+    device_type = sys.argv[4]
 
     print(f"Script Name: {script_name}")
+    print(f"Central Base URL: {base_url}")
     print(f"Central API Token: {central_api_token}")
-    print(f"Serial Number: {central_api_token}")
-    print(f"Device Type: {central_api_token}")
+    print(f"Serial Number: {serial_num}")
+    print(f"Device Type: {device_type}")
     
 
 if __name__ == "__main__":
