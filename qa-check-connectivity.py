@@ -16,11 +16,12 @@ def call_api_with_token_args(access_token, serial_numbers, base_url):
 
         for serial in serial_numbers:
             url = f"{base_url}{serial.strip()}"
-
+            print(f"Calling URL: {url}")
             response = requests.get(url, headers=headers)
 
             if response.status_code == 200:
                 data = response.json()  # Parse JSON response
+                print(f"Response Data: {data}")
                 api_responses.update({serial: data["status"]})
             else:
                 print(
