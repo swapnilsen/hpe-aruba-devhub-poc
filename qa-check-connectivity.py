@@ -1,5 +1,7 @@
 import json
 import requests
+import sys
+
 
 
 def call_api_with_token_args(access_token, serial_numbers, base_url):
