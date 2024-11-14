@@ -147,17 +147,21 @@ def call_api_with_token_args(access_token, serial_numbers, base_url):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Check device status")
-    parser.add_argument("access_token", type=str, help="Access token for API authentication")
-    parser.add_argument("base_url", type=str, help="Base URL for the device status API")
-    parser.add_argument("serial_numbers", type=str, help="Comma separated list of serial numbers")
-    parser.add_argument("email_recipients", type=str, help="Comma separated value of email ids to send the mail to")
-    args = parser.parse_args()
+    script_name = sys.argv[0]
+    base_url = sys.argv[1]
+    api_token = sys.argv[2]
+    serial_number_str = sys.argv[3]
+    serial_numbers = serial_number_str.split(",")
+    device_type = sys.argv[4]
 
-    serial_numbers = args.serial_numbers.split(",")
+    print(f"Script Name: {script_name}")
+    print(f"Central Base URL: {base_url}")
+    print(f"Central API Token: {api_token}")
+    print(f"Serial Numbers: {serial_numbers}")
+    print(f"Device Type: {device_type}")
 
-    device_status = call_api_with_token_args(args.access_token, serial_numbers, args.base_url)
-    email_recipients = args.email_recipients
+    device_status = call_api_with_token_args(api_token, serial_numbers, base_url)
+    email_recipients = "swapnil.sen@hpe.com,sumit.paul@hpe.com"
 
     html_table = """
         <table border="1" cellpadding="5" cellspacing="0">
@@ -182,7 +186,7 @@ if __name__ == '__main__':
     email_url = "https://si-central-site-hc.arubaserviceinsights.com/send-email"
 
     json_data = {
-        "subject": f"Dev Hub QA Central Device Status - {args.base_url}",
+        "subject": f"Dev Hub QA Central Device Status",
         "body": html_table,
         "receivers": email_recipients.split(",")
     }
